@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rochana</title>
+  <link rel="icon" type="image/jpg" href="Favicon.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #eb000d;
+      --dark-bg: #0c0d10;
+      --light-bg: #ffffff;
+      --text-dark: #11141a;
+      --text-muted: #757b8a;
+      --text-light: #ffffff;
+      --border-color: #eaedf2;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-dark);
+      background-color: var(--light-bg);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ==========================================================================
+       SECTION 1: HERO (#Home) - Full 1920x920 Background Setup
+       ========================================================================== */
+    .vlt-section-home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background-color: #b7000a; /* Fallback color */
+      
+      /* YOUR 1920x920 HERO IMAGE SET HERE */
+      background-image: url('Hero 01.webp');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center right;
+      overflow: hidden;
+    }
+
+    /* Subtle left gradient overlay ensuring high text readability */
+    .vlt-section-home::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(183, 0, 10, 0.95) 0%, rgba(183, 0, 10, 0.4) 70%, transparent 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-text {
+      max-width: 680px;
+      color: var(--text-light);
+      position: relative;
+      z-index: 3;
+    }
+
+    .vlt-display-1 {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 600;
+    }
+
+    .vlt-large-heading {
+      font-size: clamp(2.5rem, 5vw, 4.3rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin: 16px 0 36px 0;
+      letter-spacing: -1px;
+      color: var(--text-light);
+    }
+
+    .counter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+      margin-bottom: 40px;
+    }
+
+    .vlt-counter-up-small .counter {
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: var(--text-light);
+      line-height: 1;
+    }
+
+    .vlt-counter-up-small sup {
+      color: #ffffff;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .vlt-counter-up-small h6 {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+      margin-top: 8px;
+      line-height: 1.4;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .vlt-link-hero {
+      display: inline-flex;
+      align-items: center;
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 2px solid #ffffff;
+      padding-bottom: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .vlt-link-hero:hover {
+      letter-spacing: 2px;
+      color: #ffcccc;
+      border-color: #ffcccc;
+    }
+
+    /* ==========================================================================
+       SECTION 2: SERVICES & EXPERIENCE (#Services)
+       ========================================================================== */
+    .vlt-section-services {
+      background-color: var(--light-bg);
+      color: var(--text-dark);
+      padding: 120px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .services-layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 60px;
+    }
+
+    .experience-counter-block {
+      border-right: 1px solid var(--border-color);
+      padding-right: 30px;
+    }
+
+    .vlt-counter-up .counter {
+      font-size: clamp(4rem, 6vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1;
+      color: var(--text-dark);
+      display: inline-block;
+    }
+
+    .vlt-counter-up sup {
+      color: var(--primary-color);
+      font-size: 2.2rem;
+      font-weight: 800;
+    }
+
+    .experience-counter-block h6 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1.5;
+      color: var(--text-muted);
+      margin-top: 20px;
+    }
+
+    .services-main h4 {
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 800;
+      line-height: 1.35;
+      margin-bottom: 50px;
+      color: var(--text-dark);
+      letter-spacing: -0.5px;
+    }
+
+    .has-first-color {
+      color: var(--primary-color);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+
+    .vlt-services {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .vlt-services__title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-dark);
+    }
+
+    .vlt-services__text {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+
+    .vlt-link-with-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-dark);
+      text-decoration: none;
+      transition: color 0.2s ease, gap 0.2s ease;
+    }
+
+    .vlt-link-with-arrow:hover {
+      color: var(--primary-color);
+      gap: 12px;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 991px) {
+      .vlt-section-home::before {
+        width: 100%;
+        background: rgba(183, 0, 10, 0.85);
+      }
+      .services-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .experience-counter-block {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 30px;
+        padding-right: 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .counter-row {
+        gap: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       HERO SECTION (#Home)
+       ========================================== -->
+  <section class="vlt-section-home" id="Home">
+    <div class="container">
+      <div class="hero-text">
+        <h5 class="vlt-display-1">Rochana Abeyagunawardhana</h5>
+        <h1 class="vlt-large-heading">Multidisciplinary<br>Operations &amp; Brand Lead</h1>
+        
+        <div class="counter-row">
+          <div class="vlt-counter-up-small">
+            <span class="counter" data-target="5">0</span><sup>+</sup>
+            <h6>Years Corporate<br>&amp; Plant Experience</h6>
+          </div>
+          <div class="vlt-counter-up-small">
+            <span class="counter" data-target="120">0</span><sup>+</sup>
+            <h6>Audits, Projects<br>&amp; Brand Launches</h6>
+          </div>
+        </div>
+
+        <a class="vlt-link-hero" href="#Services">Explore Specializations</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       EXPERIENCE & SERVICES SECTION (#Services)
+       ========================================== -->
+  <section class="vlt-section-services" id="Services">
+    <div class="container">
+      <div class="services-layout">
+        
+        <!-- Left: Big Counter -->
+        <div class="experience-counter-block">
+          <div class="vlt-counter-up">
+            <span class="counter" data-target="5">0</span><sup>+</sup>
+          </div>
+          <h6>Years <br>Experience <br>Working</h6>
+        </div>
+
+        <!-- Right: Description & Grid -->
+        <div class="services-main">
+          <h4>
+            Industrial Operations Specialist &amp; Brand Strategist, specialized in 
+            <span class="has-first-color">Audit, Manufacturing &amp; Brand Management.</span>
+          </h4>
+
+          <div class="services-grid">
+            
+            <!-- Pillar 1 -->
+            <div class="vlt-services">
+              <h5 class="vlt-services__title">Internal Audit &amp; Risk</h5>
+              <p class="vlt-services__text">
+                Dissecting complex industrial workflows, evaluating risk governance, and deploying Power BI systems to optimize organizational compliance and eliminate inefficiencies.
+              </p>
+              <a class="vlt-link-with-arrow" href="#Services">
+                <span>Discover more</span>
+                <span>&#129130;</span>
+              </a>
+            </div>
+
+            <!-- Pillar 2 -->
+            <div class="vlt-services">
+              <h5 class="vlt-services__title">Production Planning</h5>
+              <p class="vlt-services__text">
+                Directing production schedules, inventory control, and raw material utilization in industrial packaging to minimize waste and elevate overall output.
+              </p>
+              <a class="vlt-link-with-arrow" href="#Services">
+                <span>Discover more</span>
+                <span>&#129130;</span>
+              </a>
+            </div>
+
+            <!-- Pillar 3 -->
+            <div class="vlt-services">
+              <h5 class="vlt-services__title">Strategic Brand Management</h5>
+              <p class="vlt-services__text">
+                Leading multi-channel campaigns, consumer research, trade marketing positioning, and new product launches across leading agency and FMCG environments.
+              </p>
+              <a class="vlt-link-with-arrow" href="#Services">
+                <span>Discover more</span>
+                <span>&#129130;</span>
+              </a>
+            </div>
+
+            <!-- Pillar 4 -->
+            <div class="vlt-services">
+              <h5 class="vlt-services__title">Digital Systems &amp; Analytics</h5>
+              <p class="vlt-services__text">
+                Building data models, tracking business metrics in Power BI/Excel, and producing high-impact visual design assets using the full Adobe Creative Suite.
+              </p>
+              <a class="vlt-link-with-arrow" href="#Services">
+                <span>Discover more</span>
+                <span>&#129130;</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <style>
+  .vlt-section-experience {
+    background-color: #0c0d10;
+    background-image: radial-gradient(circle at 10% 50%, rgba(235, 0, 13, 0.08) 0%, transparent 60%);
+    color: #ffffff;
+    padding: 120px 0;
+    position: relative;
+    border-bottom: 1px solid #1e2025;
+  }
+  
+  .exp-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+  }
+
+  .exp-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    letter-spacing: -1px;
+    color: #ffffff;
+  }
+
+  /* Full Timeline List */
+  .timeline-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .timeline-row {
+    display: grid;
+    grid-template-columns: 180px 300px 1fr;
+    gap: 40px;
+    padding: 32px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    align-items: baseline;
+    transition: background 0.2s ease;
+  }
+
+  .timeline-row:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .timeline-year {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #94a3b8;
+    letter-spacing: 0.5px;
+  }
+
+  .timeline-role h5 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+
+  .timeline-role span {
+    font-size: 0.95rem;
+    color: #eb000d;
+    font-weight: 600;
+  }
+
+  .timeline-desc {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    line-height: 1.6;
+  }
+
+  .btn-resume {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #eb000d;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 14px 28px;
+    border-radius: 4px;
+    margin-top: 50px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-resume:hover {
+    background: #b3000a;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 900px) {
+    .timeline-row {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      padding: 25px 0;
+    }
+    .timeline-desc {
+      margin-top: 6px;
+    }
+  }
+</style>
+
+<section class="vlt-section-experience" id="Experience">
+  <div class="exp-container">
+    
+    <div class="exp-header">
+      <h2 class="exp-title">Experience</h2>
+    </div>
+
+    <div class="timeline-list">
+
+      <!-- 1. Audit Executive -->
+      <div class="timeline-row">
+        <div class="timeline-year">2026.01 – 2026.06</div>
+        <div class="timeline-role">
+          <h5>Audit Executive</h5>
+          <span>Araliya Management Service Lanka</span>
+        </div>
+        <div class="timeline-desc">
+          Dissected complex industrial workflows, evaluated risk compliance, and deployed Power BI and Excel data systems to audit operations and eliminate process inefficiencies 
+        </div>
+      </div>
+
+      <!-- 2. Head of Production Planning -->
+      <div class="timeline-row">
+        <div class="timeline-year">2025.07 – 2026.05</div>
+        <div class="timeline-role">
+          <h5>Head of Production Planning</h5>
+          <span>Araliya Packaging Lanka</span>
+        </div>
+        <div class="timeline-desc">
+          Directed end-to-end production schedules, inventory control, and raw material usage in manufacturing to minimize waste and ensure consistent on-time output 
+        </div>
+      </div>
+
+      <!-- 3. Asst. Project & Finance Manager -->
+      <div class="timeline-row">
+        <div class="timeline-year">2025.05 – 2025.07</div>
+        <div class="timeline-role">
+          <h5>Asst. Project &amp; Finance Manager</h5>
+          <span>Lakbima Rice Mills (Araliya Rice)</span>
+        </div>
+        <div class="timeline-desc">
+          Supported cross-functional project coordination and financial tracking across mill operations, managing budgeting and cost control frameworks 
+        </div>
+      </div>
+
+      <!-- 4. Social Media Marketing Intern -->
+      <div class="timeline-row">
+        <div class="timeline-year">2025.02 – 2025.05</div>
+        <div class="timeline-role">
+          <h5>Social Media Marketing Intern</h5>
+          <span>Nations Trust Bank PLC</span>
+        </div>
+        <div class="timeline-desc">
+          Executed digital communications strategies for high-value financial portfolios including American Express and FriMi, ensuring brand consistency and engagement 
+        </div>
+      </div>
+
+      <!-- 5. Junior Marketing Team Lead -->
+      <div class="timeline-row">
+        <div class="timeline-year">2024.01 – 2024.12</div>
+        <div class="timeline-role">
+          <h5>Junior Marketing Team Lead</h5>
+          <span>Hemas Consumer Brands</span>
+        </div>
+        <div class="timeline-desc">
+          Managed campaign planning and execution for consumer product lines, analyzed market trends, and supported new product launches across retail channels 
+        </div>
+      </div>
+
+      <!-- 6. Creative Producer -->
+      <div class="timeline-row">
+        <div class="timeline-year">2023.03 – 2023.10</div>
+        <div class="timeline-role">
+          <h5>Creative Producer</h5>
+          <span>Triad (Pvt) Ltd</span>
+        </div>
+        <div class="timeline-desc">
+          Coordinated multimedia content workflows and creative production pipelines across digital and traditional media aligned with client guidelines 
+        </div>
+      </div>
+
+      <!-- 7. Marketing Intern -->
+      <div class="timeline-row">
+        <div class="timeline-year">2022.07 – 2022.12</div>
+        <div class="timeline-role">
+          <h5>Marketing Intern</h5>
+          <span>Wunderman Thompson Sri Lanka</span>
+        </div>
+        <div class="timeline-desc">
+          Conducted consumer research, analyzed competitor activities, and assisted in creating digital and print promotional campaigns 
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Download Resume Button -->
+    <a href="CV.html" class="btn-resume" target="_blank">
+      Download Full CV &#129130;
+    </a>
+
+  </div>
+</section>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills Section</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary-color: #eb000d;
+      --light-bg: #ffffff;
+      --text-dark: #11141a;
+      --text-muted: #6b7280;
+      --border-color: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       SKILLS SECTION (#Skills)
+       ========================================================================== */
+    .vlt-section-skills {
+      background-color: var(--light-bg);
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 30px;
+    }
+
+    .skills-layout {
+      display: grid;
+      grid-template-columns: 480px 1fr;
+      gap: 90px;
+      align-items: center;
+    }
+
+    /* Left: Photo Collage with Floating Badges */
+    .photo-collage {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .main-photo-frame {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+      background-color: #f3f4f6;
+    }
+
+    .main-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Floating Badges matching Mikael template */
+    .floating-badge {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      z-index: 3;
+      transition: transform 0.3s ease;
+    }
+
+    .floating-badge:hover {
+      transform: translateY(-5px);
+    }
+
+    .badge-red {
+      background: var(--primary-color);
+      color: #ffffff;
+    }
+
+    .badge-dark {
+      background: #0f1013;
+      color: #ffffff;
+    }
+
+    /* Badge Positions */
+    .badge-top-right {
+      top: -24px;
+      right: -24px;
+      width: 72px;
+      height: 72px;
+      font-size: 1.6rem;
+    }
+
+    .badge-mid-left {
+      top: 25%;
+      left: -32px;
+      width: 64px;
+      height: 64px;
+      font-size: 1.4rem;
+    }
+
+    .badge-bottom-left {
+      bottom: -24px;
+      left: 15px;
+      width: 74px;
+      height: 74px;
+      font-size: 1.6rem;
+    }
+
+    /* Plus grid pattern background */
+    .pattern-bg {
+      position: absolute;
+      right: -40px;
+      bottom: -40px;
+      width: 220px;
+      height: 220px;
+      background-image: radial-gradient(#d1d5db 2px, transparent 2px);
+      background-size: 16px 16px;
+      z-index: 0;
+      opacity: 0.8;
+    }
+
+    /* Right: Skills Content & Progress Bars */
+    .skills-content h3 {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 900;
+      line-height: 1.25;
+      color: var(--text-dark);
+      letter-spacing: -0.5px;
+      margin-bottom: 20px;
+    }
+
+    .skills-content h3 .highlight-red {
+      color: var(--primary-color);
+    }
+
+    .skills-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 45px;
+      max-width: 580px;
+    }
+
+    /* Progress Bars */
+    .progress-item {
+      margin-bottom: 30px;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .progress-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .progress-percent {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 4px;
+      background-color: #f1f5f9;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background-color: var(--primary-color);
+      width: 0%;
+      border-radius: 4px;
+      transition: width 1.5s cubic-bezier(0.1, 0.5, 0.1, 1);
+    }
+
+    /* Responsive */
+    @media (max-width: 991px) {
+      .skills-layout {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+      .photo-collage {
+        max-width: 380px;
+      }
+      .main-photo-frame {
+        height: 420px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       SKILLS SECTION (#Skills)
+       ========================================== -->
+  <section class="vlt-section-skills" id="Skills">
+    <div class="container">
+      <div class="skills-layout">
+        
+        <!-- Left: Image with Pattern and Floating Tool Badges -->
+        <div class="photo-collage">
+          <div class="pattern-bg"></div>
+
+          <!-- Top Right Badge: Operational Analytics / Chart -->
+          <div class="floating-badge badge-red badge-top-right" title="Power BI & Process Audit">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+
+          <!-- Mid Left Badge: Industrial & Materials -->
+          <div class="floating-badge badge-dark badge-mid-left" title="Polymer & Manufacturing Systems">
+            <i class="fa-solid fa-industry"></i>
+          </div>
+
+          <!-- Main Portrait / Work Image -->
+          <div class="main-photo-frame">
+            <!-- Put your photo file name inside src="" -->
+            <img src="Skill Image.webp" alt="Rochana Abeyagunawardhana">
+          </div>
+
+          <!-- Bottom Left Badge: Design & Media -->
+          <div class="floating-badge badge-red badge-bottom-left" title="Adobe Creative Suite">
+            <i class="fa-solid fa-pen-nib"></i>
+          </div>
+        </div>
+
+        <!-- Right: Professional Competencies & Progress Bars -->
+        <div class="skills-content">
+          <h3>
+            Applying <span class="highlight-red">precision analytics &amp; strategic methods</span> across operations and brand leadership.
+          </h3>
+          <p class="skills-desc">
+            Bridging industrial process auditing and material management with corporate finance governance and commercial marketing execution[cite: 2].
+          </p>
+
+           <!-- Skill 1 -->
+<div class="progress-item">
+  <div class="progress-header">
+    <span class="progress-title">Brand Strategy &amp; Marketing</span>
+    <span class="progress-percent">85%</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" data-progress="85%"></div>
+  </div>
+</div>
+
+<!-- Skill 2 -->
+<div class="progress-item">
+  <div class="progress-header">
+    <span class="progress-title">Graphic Design &amp; Adobe CC</span>
+    <span class="progress-percent">88%</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" data-progress="88%"></div>
+  </div>
+</div>
+
+<!-- Skill 3 -->
+<div class="progress-item">
+  <div class="progress-header">
+    <span class="progress-title">Power BI &amp; Data Analytics</span>
+    <span class="progress-percent">80%</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" data-progress="80%"></div>
+  </div>
+</div>
+
+<!-- Skill 4 -->
+<div class="progress-item">
+  <div class="progress-header">
+    <span class="progress-title">Production Planning &amp; Operations</span>
+    <span class="progress-percent">75%</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" data-progress="75%"></div>
+  </div>
+</div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Showcase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-red: #eb000d;
+      --dark-bg: #0d0e12;
+      --text-muted: rgba(255, 255, 255, 0.2);
+      --text-active: #ffffff;
+      --border-color: #1e2026;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--dark-bg);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    /* ==========================================================================
+       PORTFOLIO SECTION (#Portfolio)
+       ========================================================================== */
+    .vlt-section-portfolio {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background-color: var(--dark-bg);
+      background-image: radial-gradient(circle at 75% 50%, rgba(235, 0, 13, 0.06) 0%, transparent 60%);
+      padding: 80px 0;
+      overflow: hidden;
+    }
+
+    .portfolio-container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 60px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Left: Interactive Project List */
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .project-item {
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: block;
+    }
+
+    .project-category {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      transition: color 0.3s ease;
+      display: block;
+    }
+
+    .project-title {
+      font-size: clamp(2rem, 3.8vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--text-muted);
+      letter-spacing: -1px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Active / Hovered State */
+    .project-item.is-active .project-title,
+    .project-item:hover .project-title {
+      color: var(--text-active);
+      transform: translateX(12px);
+    }
+
+    .project-item.is-active .project-category,
+    .project-item:hover .project-category {
+      color: var(--primary-red);
+      transform: translateX(12px);
+    }
+
+    /* Right: Circular Showcase Preview Window */
+    .showcase-display {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .circle-preview-window {
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08);
+      background-color: #16181f;
+    }
+
+    .preview-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(1.1);
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .preview-image.is-active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Outer ambient ring */
+    .circle-preview-window::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.5);
+      pointer-events: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 991px) {
+      .portfolio-container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+      .showcase-display {
+        order: -1;
+      }
+      .circle-preview-window {
+        width: 320px;
+        height: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  
+  <!-- ==========================================
+       COUNTER SCRIPT
+       ========================================== -->
+  <script>
+    const counters = document.querySelectorAll('.counter');
+    const animationSpeed = 50;
+
+    const runCounter = (counter) => {
+      const target = +counter.getAttribute('data-target');
+      let count = 0;
+      const step = Math.ceil(target / 25) || 1;
+
+      const update = () => {
+        count += step;
+        if (count < target) {
+          counter.innerText = count;
+          setTimeout(update, animationSpeed);
+        } else {
+          counter.innerText = target;
+        }
+      };
+
+      update();
+    };
+
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          runCounter(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    counters.forEach(counter => counterObserver.observe(counter));
+  </script>
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stacked Circular Footer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --footer-bg: #090a0d;
+      --primary-accent: #eb000d;
+      --text-main: #ffffff;
+      --text-muted: #94a3b8;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --card-bg: rgba(255, 255, 255, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0c0d10;
+      color: var(--text-main);
+    }
+
+    /* ==========================================================================
+       STACKED CIRCULAR FOOTER (PORTFOLIO EDITION)
+       ========================================================================== */
+    .stacked-footer {
+      background-color: var(--footer-bg);
+      padding: 90px 20px 50px;
+      border-top: 1px solid var(--border-subtle);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer-container {
+      max-width: 840px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Circular Brand Logo Badge */
+    .footer-logo-circle {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: rgba(235, 0, 13, 0.1);
+      border: 1px solid rgba(235, 0, 13, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      color: var(--primary-accent);
+      font-size: 1.6rem;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .footer-logo-circle:hover {
+      transform: scale(1.08);
+      background: rgba(235, 0, 13, 0.2);
+      box-shadow: 0 0 25px rgba(235, 0, 13, 0.35);
+    }
+
+    /* Tagline / Subtitle */
+    .footer-tagline {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 28px;
+      letter-spacing: -0.2px;
+    }
+
+    /* Navigation Links */
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 36px;
+    }
+
+    .footer-nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-nav a:hover {
+      color: var(--primary-accent);
+    }
+
+    /* Circular Social Buttons */
+    .footer-socials {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+
+    .social-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border-subtle);
+      background: var(--card-bg);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-btn:hover {
+      background: var(--primary-accent);
+      color: #ffffff;
+      border-color: var(--primary-accent);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(235, 0, 13, 0.3);
+    }
+
+    /* Direct Action Buttons / Contact Row */
+    .footer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 45px;
+    }
+
+    .btn-action-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 46px;
+      padding: 0 26px;
+      border-radius: 9999px;
+      background: var(--primary-accent);
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-action-primary:hover {
+      background: #b3000a;
+      transform: translateY(-2px);
+    }
+
+    .btn-action-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 46px;
+      padding: 0 26px;
+      border-radius: 9999px;
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-action-outline:hover {
+      border-color: var(--primary-accent);
+      color: var(--primary-accent);
+      background: rgba(235, 0, 13, 0.05);
+      transform: translateY(-2px);
+    }
+
+    /* Copyright Text */
+    .footer-copyright {
+      font-size: 0.85rem;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 540px) {
+      .footer-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+      .btn-action-primary, .btn-action-outline {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonials Section</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  
+  <style>
+    :root {
+      --primary-red: #eb000d;
+      --dark-bg: #0c0d10;
+      --card-red: #d8000c;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--dark-bg);
+      color: #ffffff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ==========================================================================
+       TESTIMONIALS SECTION (#Testimonials)
+       ========================================================================== */
+    .vlt-section-testimonials {
+      background-color: var(--dark-bg);
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background-image: radial-gradient(circle at 20% 50%, rgba(235, 0, 13, 0.08) 0%, transparent 60%);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header & Navigation Arrows */
+    .testimonials-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .slider-controls {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      user-select: none;
+    }
+
+    .ctrl-btn {
+      font-size: 1.5rem;
+      color: #ffffff;
+      cursor: pointer;
+      transition: color 0.2s ease, transform 0.2s ease;
+      background: none;
+      border: none;
+      outline: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ctrl-btn:hover {
+      color: var(--primary-red);
+      transform: scale(1.15);
+    }
+
+    .ctrl-btn.swiper-button-disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .pagination-fraction {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 2px;
+    }
+
+    .pagination-fraction .swiper-pagination-current {
+      color: #ffffff;
+    }
+
+    /* 3D Testimonial Swiper Slider */
+    .testimonials-swiper {
+      width: 100%;
+      padding: 20px 0 60px;
+      overflow: visible;
+    }
+
+    .swiper-slide {
+      width: 100%;
+      max-width: 920px;
+      transition: all 0.4s ease;
+    }
+
+    /* Red Testimonial Card */
+    .testimonial-card {
+      background: var(--card-red);
+      background-image: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+      border-radius: 12px;
+      padding: 50px 60px;
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+      position: relative;
+    }
+
+    .testimonial-avatar {
+      flex: 0 0 110px;
+      height: 110px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .testimonial-body {
+      flex: 1;
+    }
+
+    .testimonial-quote {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: #ffffff;
+      font-weight: 400;
+      margin-bottom: 24px;
+    }
+
+    .testimonial-meta h6 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+
+    .testimonial-meta span {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    /* Client / Partner Brand Logos Row */
+    .partner-logos-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 60px;
+      padding-top: 50px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .partner-logo-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: grayscale(100%) brightness(150%);
+      opacity: 0.45;
+      transition: all 0.3s ease;
+      height: 45px;
+    }
+
+    .partner-logo-item:hover {
+      filter: grayscale(0%) brightness(100%);
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+
+    .partner-logo-item img {
+      max-height: 40px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .testimonial-card {
+        flex-direction: column;
+        padding: 35px 25px;
+        text-align: center;
+        gap: 20px;
+      }
+      .partner-logos-row {
+        justify-content: center;
+        gap: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       TESTIMONIALS SECTION (#Testimonials)
+       ========================================== -->
+  <section class="vlt-section-testimonials" id="Testimonials">
+    <div class="container">
+      
+      <!-- Top Title and Arrows -->
+      <div class="testimonials-header">
+        <h2 class="section-title">Testimonials</h2>
+        
+        <div class="slider-controls">
+          <button class="ctrl-btn prev-testi" aria-label="Previous slide">&#129128;</button>
+          <div class="pagination-fraction"></div>
+          <button class="ctrl-btn next-testi" aria-label="Next slide">&#129130;</button>
+        </div>
+      </div>
+
+      <!-- Testimonial 3D Swiper -->
+<div class="swiper testimonials-swiper">
+  <div class="swiper-wrapper">
+    
+    <!-- Slide 1: Operations / Audit Endorsement -->
+    <div class="swiper-slide">
+      <div class="testimonial-card">
+        <div class="testimonial-avatar">
+          <img src="Chandupa Kobe.jpg" alt="Director of Operations" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+        </div>
+        <div class="testimonial-body">
+          <p class="testimonial-quote">
+            "Played an indispensable role in scaling Kobe Clothing's digital identity and market reach. His keen eye for contemporary apparel aesthetics and sharp promotional execution consistently elevated our apparel drops and customer engagement."
+          </p>
+          <div class="testimonial-meta">
+            <h6>Chandupa Nanayakkara </h6>
+            <span> Co-Founder &bull; Kobe Clothing </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2: Crepe Runner Brand Growth Endorsement -->
+    <div class="swiper-slide">
+      <div class="testimonial-card">
+        <div class="testimonial-avatar">
+          <img src="ab Salaam.jpg" alt="Abdus Salaam" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+        </div>
+        <div class="testimonial-body">
+          <p class="testimonial-quote">
+            "Instrumental in accelerating Crepe Runner's digital brand presence across our QSR network. His ability to synthesize creative visual storytelling with data-driven social strategies significantly amplified our customer reach, engagement, and nationwide brand positioning."
+          </p>
+          <div class="testimonial-meta">
+            <h6>Abdus Salaam</h6>
+            <span>Founder &bull; Crepe Runner QSR Chain</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3: Project Coordination & Systems Delivery -->
+    <div class="swiper-slide">
+      <div class="testimonial-card">
+        <div class="testimonial-avatar">
+          <img src="Chinthaka Hemas.jpg" alt="Chinthaka Dissanayake" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+        </div>
+        <div class="testimonial-body">
+          <p class="testimonial-quote">
+            "Played a vital role in coordinating high-impact FMCG campaigns across key brands, driving the Vivya product launch, and executing targeted market initiatives for Fems and Atlas with exceptional strategic clarity."
+          </p>
+          <div class="testimonial-meta">
+            <h6>Chinthaka Dissanayake</h6>
+            <span>Manager - Marketing & CX &bull; Hemas Consumer Brands</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+      <!-- Partner / Client Logos -->
+      <div class="partner-logos-row">
+        <div class="partner-logo-item" title="Enterprise Partner">
+          <img src="AkzoNobel_Logo.svg.webp" alt="Akzo Nobel">
+        </div>
+        <div class="partner-logo-item" title="Brand Campaign Client">
+          <img src="triad.png" alt="Triad">
+        </div>
+        <div class="partner-logo-item" title="Industrial Operations">
+          <img src="Araliya 3.png" alt="Araliya">
+        </div>
+        <div class="partner-logo-item" title="Financial Services Partner">
+          <img src="hemas-logo-color.png" alt="HCB">
+        </div>
+        <div class="partner-logo-item" title="Creative Production Partner">
+          <img src="NTB.png" alt="NTB">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Swiper JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script>
+    const testimonialSwiper = new Swiper('.testimonials-swiper', {
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      speed: 700,
+      coverflowEffect: {
+        rotate: 35,
+        stretch: 0,
+        depth: 120,
+        modifier: 1,
+        slideShadows: true,
+      },
+      pagination: {
+        el: '.pagination-fraction',
+        type: 'fraction',
+      },
+      navigation: {
+        nextEl: '.next-testi',
+        prevEl: '.prev-testi',
+      },
+    });
+  </script>
+
+  <!-- STACKED CIRCULAR FOOTER -->
+  <footer class="stacked-footer">
+    <div class="footer-container">
+      
+      <!-- 1. Centered Circular Brand Badge -->
+      <div class="footer-logo-circle" title="Urban Distance">
+        <img src="urban logo.png" alt="Urban Distance Logo" style="width: 40px; height: 40px; border-radius: 50%;">
+      </div>
+
+      <!-- Tagline -->
+      <p class="footer-tagline">
+        Industrial Operations &bull; Process Audit &bull; Brand Strategy
+      </p>
+
+      <!-- 2. Navigation Anchor Links -->
+      <nav class="footer-nav">
+        <a href="#Home">Home</a>
+        <a href="Music Rochana.html">Music</a>
+        <a href="Art Rochana.html">Art</a>
+      </nav>
+
+      <!-- 3. Circular Professional Social Profiles -->
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/in/rochanada" target="_blank" class="social-btn" aria-label="LinkedIn" title="LinkedIn">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a href="https://behance.net/rochanada" target="_blank" class="social-btn" aria-label="Behance" title="Behance">
+          <i class="fa-brands fa-behance"></i>
+        </a>
+        <a href="https://github.com/rochanada" target="_blank" class="social-btn" aria-label="GitHub" title="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="mailto:rochanadah@gmail.com" class="social-btn" aria-label="Email" title="Direct Email">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
+      <!-- 5. Copyright Line -->
+      <p class="footer-copyright">
+        &copy; 2026 Rochana Abeyagunawardhana. Built with precision and purpose.
+      </p>
+
+    </div>
+  </footer>
+</body>
+</html>

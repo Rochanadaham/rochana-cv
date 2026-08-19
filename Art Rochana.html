@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Portfolio | Artworks &amp; Design Showcase</title>
+    <link rel="icon" type="image/jpg" href="Favicon.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           THEME TOKENS: SYNCED WITH MAIN PORTFOLIO (#eb000d / #0c0d10)
+           ========================================================================== */
+        :root {
+            /* DARK MODE (DEFAULT) */
+            --bg-main: #0c0d10;
+            --bg-card: #121318;
+            --bg-card-hover: #191b22;
+            --accent: #eb000d;
+            --accent-hover: #b3000a;
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(235, 0, 13, 0.4);
+            --glow: rgba(235, 0, 13, 0.12);
+        }
+
+        [data-theme="light"] {
+            /* LIGHT MODE */
+            --bg-main: #ffffff;
+            --bg-card: #f8fafc;
+            --bg-card-hover: #f1f5f9;
+            --accent: #eb000d;
+            --accent-hover: #b3000a;
+            --text-main: #11141a;
+            --text-muted: #6b7280;
+            --border: #eaedf2;
+            --border-hover: rgba(235, 0, 13, 0.35);
+            --glow: rgba(235, 0, 13, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* FLOATING UTILITY CONTROLS */
+        .nav-actions {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 1000;
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-utility {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            height: 46px;
+            border-radius: 9999px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0 18px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-utility:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-circle {
+            width: 46px;
+            padding: 0;
+            border-radius: 50%;
+        }
+
+        /* HERO HEADER */
+        header {
+            padding: 150px 0 80px 0;
+            text-align: center;
+            position: relative;
+            background-image: radial-gradient(circle at center, var(--glow) 0%, transparent 65%);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: clamp(2.8rem, 6vw, 5.2rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1.05;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 span {
+            color: var(--accent);
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-muted);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 40px;
+        }
+
+        /* SECTION TITLES */
+        section {
+            padding: 70px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* DESIGN ARSENAL GRID */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 36px 30px;
+            text-align: left;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .tool-card:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            transform: translateY(-5px);
+        }
+
+        .tool-icon {
+            font-size: 36px;
+            color: var(--accent);
+            margin-bottom: 22px;
+            display: inline-block;
+        }
+
+        .tool-card h4 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .tool-card p {
+            font-size: 14.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* CATEGORY NAVIGATION SHOWCASE CARDS */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .category-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .category-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .display-frame {
+            width: 100%;
+            height: 220px;
+            background: #181920;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        [data-theme="light"] .display-frame {
+            background: #f1f5f9;
+        }
+
+        .display-frame i {
+            font-size: 48px;
+            color: var(--text-muted);
+            opacity: 0.35;
+            transition: transform 0.4s ease, color 0.3s ease;
+        }
+
+        .category-card:hover .display-frame i {
+            transform: scale(1.15);
+            color: var(--accent);
+            opacity: 0.85;
+        }
+
+        .art-tag {
+            display: inline-block;
+            background: rgba(235, 0, 13, 0.1);
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 6px;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            width: fit-content;
+            border: 1px solid rgba(235, 0, 13, 0.25);
+        }
+
+        .art-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .category-card:hover .art-title {
+            color: var(--accent);
+        }
+
+        .art-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* --- INFINITE RUNNING MARQUEE --- */
+        .marquee-section {
+            padding: 30px 0;
+            overflow: hidden;
+            background: rgba(235, 0, 13, 0.03);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .marquee-wrapper {
+            display: flex;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            gap: 40px;
+            animation: scrollLeft 25s linear infinite;
+        }
+
+        @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .marquee-phrase {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            letter-spacing: 1px;
+        }
+
+        [data-theme="light"] .marquee-phrase {
+            -webkit-text-stroke: 1px rgba(17, 20, 26, 0.2);
+        }
+
+        .marquee-phrase span {
+            color: var(--accent);
+            -webkit-text-stroke: none;
+        }
+
+        /* --- ALBUM VAULT SPECIFIC DISCOGRAPHY GRID --- */
+        .artwork-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .artwork-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .artwork-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .art-frame {
+            width: 100%;
+            padding-top: 100%; /* 1:1 Square */
+            background: #181920;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 18px;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        [data-theme="light"] .art-frame {
+            background: #f1f5f9;
+        }
+
+        .art-frame i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 36px;
+            color: var(--text-muted);
+            opacity: 0.3;
+            transition: all 0.3s ease;
+        }
+
+        .art-frame img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.95;
+            transition: transform 0.5s ease;
+        }
+
+        .artwork-card:hover .art-frame img {
+            transform: scale(1.06);
+        }
+
+        .artwork-card:hover .art-frame i {
+            color: var(--accent);
+            opacity: 0.6;
+        }
+
+        .artist-badge {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .track-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+            color: var(--text-main);
+        }
+
+        .track-context {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           FOOTER (MATCHING LANDING PAGE STACKED CIRCULAR FOOTER)
+           ========================================================================== */
+        .stacked-footer {
+            background-color: #090a0d;
+            padding: 90px 20px 50px;
+            border-top: 1px solid var(--border);
+            position: relative;
+            text-align: center;
+        }
+
+        .footer-container {
+            max-width: 840px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo-circle {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            background: rgba(235, 0, 13, 0.1);
+            border: 1px solid rgba(235, 0, 13, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: var(--accent);
+            font-size: 1.6rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-logo-circle:hover {
+            transform: scale(1.08);
+            background: rgba(235, 0, 13, 0.2);
+            box-shadow: 0 0 25px rgba(235, 0, 13, 0.35);
+        }
+
+        .footer-tagline {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 28px;
+            letter-spacing: -0.2px;
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 28px;
+            margin-bottom: 36px;
+        }
+
+        .footer-nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-nav a:hover {
+            color: var(--accent);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 40px;
+        }
+
+        .social-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(235, 0, 13, 0.3);
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 44px; }
+            .category-grid { grid-template-columns: 1fr; }
+            .tools-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- FLOATING TOP NAVIGATION CONTROLS -->
+    <div class="nav-actions">
+        <a href="index.html" class="btn-utility">
+            <i class="fa-solid fa-arrow-left"></i> Main Portfolio
+        </a>
+        <button class="btn-utility btn-circle" id="themeToggle" title="Toggle Theme">
+            <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
+    </div>
+
+    <!-- HERO HEADER -->
+    <header>
+        <div class="container">
+            <span class="hero-badge" data-aos="fade-down">Graphic Design &bull; Vector Typography &bull; Art Direction</span>
+            <h1 data-aos="fade-up">CREATIVE STUDIO<span>.</span></h1>
+            <p class="subtitle" data-aos="fade-up" data-aos-delay="100">Visual Arts, Branding &amp; Creative Direction</p>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- DESIGN ARSENAL SECTION -->
+        <section id="capabilities">
+            <h3 class="section-title" data-aos="fade-right">Design Arsenal</h3>
+            <div class="tools-grid">
+                <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fa-solid fa-bezier-curve tool-icon"></i>
+                    <h4>Vector &amp; Branding</h4>
+                    <p>Vector illustrations, complex typography design, and minimalist corporate brand guidelines[cite: 4].</p>
+                </div>
+                <div class="tool-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fa-solid fa-wand-magic-sparkles tool-icon"></i>
+                    <h4>Digital Compositing</h4>
+                    <p>High-end photo manipulating layout architecture, promotional art, and cinematic poster design[cite: 4].</p>
+                </div>
+                <div class="tool-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fa-solid fa-film tool-icon"></i>
+                    <h4>Motion Graphics</h4>
+                    <p>Dynamic audio visualizers, social promotional motion loops, and clean title sequence assets[cite: 4].</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CREATIVE DIRECTION HUBS -->
+        <section id="exhibition-hubs">
+            <h3 class="section-title" data-aos="fade-right">Creative Direction</h3>
+            <div class="category-grid">
+                
+                <a href="#album-vault" class="category-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="display-frame">
+                        <i class="fa-solid fa-compact-disc"></i>
+                    </div>
+                    <div class="art-tag">Discography Media</div>
+                    <h4 class="art-title">Album Arts</h4>
+                    <p class="art-desc">Official commercial music covers and concepts created for prominent music artists[cite: 4].</p>
+                </a>
+
+                <div class="category-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="display-frame">
+                        <i class="fa-solid fa-bezier-curve"></i>
+                    </div>
+                    <div class="art-tag">Identity Systems</div>
+                    <h4 class="art-title">Brand Designs</h4>
+                    <p class="art-desc">Minimal corporate brand architectures, layout assets, and complete vector typography guides[cite: 4].</p>
+                </div>
+
+                <div class="category-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="display-frame">
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </div>
+                    <div class="art-tag">Digital Campaigns</div>
+                    <h4 class="art-title">Social Media Posts</h4>
+                    <p class="art-desc">High aggregate click-rate promotional layouts tailored for rapid public engagement campaigns[cite: 4].</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- INFINITE RUNNING MARQUEE -->
+        <section class="marquee-section">
+            <div class="marquee-wrapper">
+                <div class="marquee-track">
+                    <div class="marquee-phrase">VISUAL CONCEPTUALIZATION <span>&bull;</span> BRAND ARCHITECTURE <span>&bull;</span> MOTION TIMELINES <span>&bull;</span> DESIGN THINKING <span>&bull;</span></div>
+                    <div class="marquee-phrase">VISUAL CONCEPTUALIZATION <span>&bull;</span> BRAND ARCHITECTURE <span>&bull;</span> MOTION TIMELINES <span>&bull;</span> DESIGN THINKING <span>&bull;</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRACK ARTWORKS VAULT -->
+        <section id="album-vault" style="border-bottom: none;">
+            <h3 class="section-title" data-aos="fade-right">Track Artworks Vault</h3>
+            <div class="artwork-grid">
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">Wickszen</div>
+                    <h4 class="track-title">Natawannam</h4>
+                    <p class="track-context">Viral Hit Artwork Profile</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">Dhyan Hewage</div>
+                    <h4 class="track-title">Pem Sithuwam</h4>
+                    <p class="track-context">Collaborative Track Release</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">Rashan Balasooriya</div>
+                    <h4 class="track-title">Pem Sithuwam</h4>
+                    <p class="track-context">Official Joint Co-Design</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">Rashan Balasooriya</div>
+                    <h4 class="track-title">Raya Pura</h4>
+                    <p class="track-context">Atmospheric Layout Canvas</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">Devil Smok</div>
+                    <h4 class="track-title">Kick Off</h4>
+                    <p class="track-context">Urban Street Music Vector</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">Devil Smok</div>
+                    <h4 class="track-title">Ralu Minissu</h4>
+                    <p class="track-context">Hardcore Collective Asset</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">Akesh Jayasekara</div>
+                    <h4 class="track-title">Sandawathiye</h4>
+                    <p class="track-context">Melodic Romance Layout</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">Akesh Jayasekara</div>
+                    <h4 class="track-title">Mulawe Mashup</h4>
+                    <p class="track-context">Vocal Mashup Visual Frame</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">Akesh Jayasekara</div>
+                    <h4 class="track-title">Danenawanam Tharam</h4>
+                    <p class="track-context">Premium Single Cover System</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">Akesh Jayasekara</div>
+                    <h4 class="track-title">Handuma</h4>
+                    <p class="track-context">Expressive Melancholic Art</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">Akesh Jayasekara</div>
+                    <h4 class="track-title">Himi Wedana</h4>
+                    <p class="track-context">Official Collaboration Display</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">Akesh Jayasekara</div>
+                    <h4 class="track-title">Ai Man</h4>
+                    <p class="track-context">Creative Portrait Layout</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">Akesh Jayasekara</div>
+                    <h4 class="track-title">Awarata Hiru</h4>
+                    <p class="track-context">Scenic Concept Artwork</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">SANUGA</div>
+                    <h4 class="track-title">Ma Langin</h4>
+                    <p class="track-context">Aesthetic Minimal Cover</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">SANUGA</div>
+                    <h4 class="track-title">Mihire</h4>
+                    <p class="track-context">Vibrant Modern Asset</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">Radushka</div>
+                    <h4 class="track-title">Oba Nisa</h4>
+                    <p class="track-context">Cinematic Release Artframe</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">Radushka</div>
+                    <h4 class="track-title">Atharaman Una Ma</h4>
+                    <p class="track-context">Deep Mood Texturing Layout</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">Radushka</div>
+                    <h4 class="track-title">Kalakamiyo</h4>
+                    <p class="track-context">Cultural Infused Graphic Architecture</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">Radushka</div>
+                    <h4 class="track-title">Andakaren Duwann</h4>
+                    <p class="track-context">Neo-Noir Contrast Theme</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">Clessoff</div>
+                    <h4 class="track-title">Rolling</h4>
+                    <p class="track-context">Dynamic Street Motion Concept</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">Clessoff</div>
+                    <h4 class="track-title">Fugezzi</h4>
+                    <p class="track-context">Premium High-Contrast Shell</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">EskennyWorld20XX</div>
+                    <h4 class="track-title">RiDi 20XX Remix</h4>
+                    <p class="track-context">Futuristic Cyberpunk Core</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">EskennyWorld20XX</div>
+                    <h4 class="track-title">Game</h4>
+                    <p class="track-context">Geometric Glitch Typography</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">EskennyWorld20XX</div>
+                    <h4 class="track-title">ASAMANAI</h4>
+                    <p class="track-context">Experimental Tech Release Canvas</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">BK / BK Rodriz</div>
+                    <h4 class="track-title">Asamanai</h4>
+                    <p class="track-context">Strategic Soundscape Theme</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">BK / BK Rodriz</div>
+                    <h4 class="track-title">Sellama Wenas</h4>
+                    <p class="track-context">Modern Abstract Vector</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">Musvio Skee</div>
+                    <h4 class="track-title">Papa Mithra</h4>
+                    <p class="track-context">Underground Network Label</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">Musvio Skee</div>
+                    <h4 class="track-title">WITHTHI</h4>
+                    <p class="track-context">Group Anthem Cover Matrix</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">X Dark Kyle</div>
+                    <h4 class="track-title">LEVEL EKA UP</h4>
+                    <p class="track-context">Neon Wave Electronic Grid</p>
+                </div>
+
+                <div class="artwork-card" data-aos="fade-up">
+                    <div class="art-frame"><i class="fa-solid fa-music"></i><img src="" alt=""></div>
+                    <div class="artist-badge">Reezer Bee</div>
+                    <h4 class="track-title">Kellonge Boru</h4>
+                    <p class="track-context">Expressive Social Artwork</p>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <!-- STACKED CIRCULAR FOOTER (SYNCED TO MAIN LANDING PAGE) -->
+    <footer class="stacked-footer">
+        <div class="footer-container">
+            
+            <div class="footer-logo-circle" title="Urban Distance">
+                <img src="urban logo.png" alt="Urban Distance Logo" style="width: 40px; height: 40px; border-radius: 50%;">
+            </div>
+
+            <p class="footer-tagline">
+                Graphic Design &bull; Vector Typography &bull; Brand Architecture
+            </p>
+
+            <nav class="footer-nav">
+                <a href="index.html#Home">Home</a>
+                <a href="#capabilities">Arsenal</a>
+                <a href="#exhibition-hubs">Creative Direction</a>
+                <a href="#album-vault">Vault</a>
+                <a href="index.html#Portfolio">Portfolio</a>
+            </nav>
+
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/rochanada" target="_blank" class="social-btn" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="https://behance.net/rochanada" target="_blank" class="social-btn" aria-label="Behance">
+                    <i class="fa-brands fa-behance"></i>
+                </a>
+                <a href="https://github.com/rochanada" target="_blank" class="social-btn" aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="mailto:rochanadah@gmail.com" class="social-btn" aria-label="Email">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
+
+            <p class="footer-copyright">
+                &copy; 2026 Rochana Abeyagunawardhana. Built with precision and purpose.
+            </p>
+
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            anchorPlacement: 'top-bottom'
+        });
+
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                document.documentElement.removeAttribute('data-theme');
+                themeIcon.className = 'fa-solid fa-moon';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeIcon.className = 'fa-solid fa-sun';
+            }
+        });
+    </script>
+</body>
+</html>

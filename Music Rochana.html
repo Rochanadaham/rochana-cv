@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Producer &amp; Creative Director</title>
+    <link rel="icon" type="image/jpg" href="Favicon.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           THEME TOKENS: SYNCED WITH MAIN PORTFOLIO (#eb000d / #0c0d10)
+           ========================================================================== */
+        :root {
+            /* DARK MODE (DEFAULT) */
+            --bg-main: #0c0d10;
+            --bg-card: #121318;
+            --bg-card-hover: #191b22;
+            --accent: #eb000d;
+            --accent-hover: #b3000a;
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(235, 0, 13, 0.4);
+            --glow: rgba(235, 0, 13, 0.12);
+            
+            /* RADIAL ORBITAL TIMELINE TOKENS */
+            --orbit-ring-color: rgba(255, 255, 255, 0.1);
+            --node-bg-active: #eb000d;
+            --node-text-active: #ffffff;
+            --popup-bg: rgba(12, 13, 16, 0.95);
+        }
+
+        [data-theme="light"] {
+            /* LIGHT MODE CONFIGURATION */
+            --bg-main: #ffffff;
+            --bg-card: #f8fafc;
+            --bg-card-hover: #f1f5f9;
+            --accent: #eb000d;
+            --accent-hover: #b3000a;
+            --text-main: #11141a;
+            --text-muted: #6b7280;
+            --border: #eaedf2;
+            --border-hover: rgba(235, 0, 13, 0.35);
+            --glow: rgba(235, 0, 13, 0.06);
+            
+            --orbit-ring-color: rgba(17, 20, 26, 0.12);
+            --node-bg-active: #eb000d;
+            --node-text-active: #ffffff;
+            --popup-bg: rgba(255, 255, 255, 0.98);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* FLOATING UTILITY CONTROLS */
+        .nav-actions {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 1000;
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-utility {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            height: 46px;
+            border-radius: 9999px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0 18px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-utility:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-circle {
+            width: 46px;
+            padding: 0;
+            border-radius: 50%;
+        }
+
+        /* HERO HEADER */
+        header {
+            padding: 150px 0 80px 0;
+            text-align: center;
+            position: relative;
+            background-image: radial-gradient(circle at center, var(--glow) 0%, transparent 65%);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: clamp(2.8rem, 6vw, 5.2rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1.05;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 span {
+            color: var(--accent);
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-muted);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 40px;
+        }
+
+        /* METRICS BANNER */
+        .metrics-banner {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 45px 30px;
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            background-image: radial-gradient(circle at 50% 0%, var(--glow) 0%, transparent 70%);
+        }
+
+        .metrics-banner:hover {
+            border-color: var(--border-hover);
+        }
+
+        .metric-number {
+            font-size: clamp(4rem, 7vw, 6.2rem);
+            font-weight: 900;
+            color: var(--text-main);
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+
+        .metric-number span.accent-text {
+            color: var(--accent);
+        }
+
+        .metric-label {
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 12px;
+            font-weight: 700;
+        }
+
+        /* SECTION TITLES */
+        section {
+            padding: 70px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ABOUT / ARCHITECTURE STATEMENT CARD */
+        .about-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 42px 48px;
+            position: relative;
+            background-image: radial-gradient(circle at 90% 10%, var(--glow) 0%, transparent 60%);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.2);
+            transition: border-color 0.3s ease;
+        }
+
+        .about-card:hover {
+            border-color: var(--border-hover);
+        }
+
+        .about-content {
+            font-size: 1.15rem;
+            line-height: 1.85;
+            color: var(--text-main);
+            font-weight: 400;
+        }
+
+        .about-content strong {
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .about-content span.highlight {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* TRACKS LIST */
+        .tracks-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .track-row {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .track-row:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateX(8px);
+        }
+
+        .track-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .track-icon {
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .track-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .track-counter {
+            font-weight: 800;
+            color: var(--accent);
+            font-size: 0.95rem;
+            background: rgba(235, 0, 13, 0.08);
+            padding: 6px 16px;
+            border-radius: 30px;
+            border: 1px solid rgba(235, 0, 13, 0.2);
+            letter-spacing: 0.5px;
+        }
+
+        .track-row:hover .track-counter {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+        }
+
+        /* ==========================================================================
+           RADIAL ORBITAL TIMELINE COMPONENT
+           ========================================================================== */
+        .timeline-viewport-wrapper {
+            width: 100%;
+            height: 620px;
+            background: radial-gradient(circle at center, var(--glow) 0%, transparent 70%);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .orbital-scene-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1000px;
+        }
+
+        .central-hub-core {
+            position: absolute;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--accent);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 35px var(--accent);
+        }
+
+        .central-hub-inner {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--bg-main);
+        }
+
+        .orbital-track-ring {
+            position: absolute;
+            width: 440px;
+            height: 440px;
+            border-radius: 50%;
+            border: 1px dashed var(--orbit-ring-color);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .timeline-orbit-node {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            user-select: none;
+            z-index: 5;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
+        }
+
+        .node-energy-field {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--border-hover) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            top: 24px;
+            left: 24px;
+            pointer-events: none;
+            width: 80px;
+            height: 80px;
+            opacity: 0.5;
+        }
+
+        .timeline-orbit-node.pulse-active .node-energy-field {
+            animation: nodePulseGlow 1.5s infinite ease-in-out;
+        }
+
+        @keyframes nodePulseGlow {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+            50% { transform: translate(-50%, -50%) scale(1.4); opacity: 0.8; }
+        }
+
+        .node-handle-circle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .timeline-orbit-node:hover .node-handle-circle {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .timeline-orbit-node.node-active .node-handle-circle {
+            background: var(--node-bg-active);
+            color: var(--node-text-active);
+            border-color: var(--accent);
+            box-shadow: 0 0 25px rgba(235, 0, 13, 0.6);
+            transform: scale(1.25);
+        }
+
+        .node-text-label {
+            position: absolute;
+            top: 56px;
+            white-space: nowrap;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .timeline-orbit-node.node-active .node-text-label {
+            color: var(--accent);
+        }
+
+        /* POPUP CARD */
+        .shadcn-popup-card {
+            position: absolute;
+            top: 60px;
+            width: 320px;
+            background: var(--popup-bg);
+            border: 1px solid var(--border-hover);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.7);
+            z-index: 100;
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .shadcn-popup-card.popup-visible {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .popup-badge {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            background: rgba(235, 0, 13, 0.15);
+            color: var(--accent);
+            border: 1px solid rgba(235, 0, 13, 0.3);
+        }
+
+        .popup-date {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .popup-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .popup-content {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .popup-energy-metric {
+            border-top: 1px solid var(--border);
+            padding-top: 12px;
+            margin-bottom: 14px;
+        }
+
+        .energy-label-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+
+        .energy-track-bar {
+            width: 100%;
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .energy-fill-bar {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .popup-connections {
+            border-top: 1px solid var(--border);
+            padding-top: 12px;
+        }
+
+        .connections-header {
+            font-size: 10px;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .connections-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .connection-link-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-main);
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .connection-link-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* COLLABORATORS GRID */
+        .collaborators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .artist-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .artist-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-6px);
+        }
+
+        .image-frame {
+            width: 100%;
+            height: 230px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 22px;
+            border: 1px solid var(--border);
+            background: #181920;
+        }
+
+        .image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+            transition: all 0.5s ease;
+        }
+
+        .artist-card:hover .image-frame img {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(235, 0, 13, 0.1);
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 6px;
+            letter-spacing: 1px;
+            width: fit-content;
+            margin-bottom: 14px;
+            border: 1px solid rgba(235, 0, 13, 0.25);
+        }
+
+        .artist-name {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .artist-card:hover .artist-name {
+            color: var(--accent);
+        }
+
+        .artist-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* 3-COLUMN ROSTER */
+        .roster-3col-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .roster-col {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .roster-mini-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .roster-mini-card:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            transform: translateY(-4px);
+        }
+
+        .roster-mini-card h4 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .roster-mini-card p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ==========================================================================
+           FOOTER (MATCHING LANDING PAGE STACKED CIRCULAR FOOTER)
+           ========================================================================== */
+        .stacked-footer {
+            background-color: #090a0d;
+            padding: 90px 20px 50px;
+            border-top: 1px solid var(--border);
+            position: relative;
+            text-align: center;
+        }
+
+        .footer-container {
+            max-width: 840px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo-circle {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            background: rgba(235, 0, 13, 0.1);
+            border: 1px solid rgba(235, 0, 13, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: var(--accent);
+            font-size: 1.6rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-logo-circle:hover {
+            transform: scale(1.08);
+            background: rgba(235, 0, 13, 0.2);
+            box-shadow: 0 0 25px rgba(235, 0, 13, 0.35);
+        }
+
+        .footer-tagline {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 28px;
+            letter-spacing: -0.2px;
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 28px;
+            margin-bottom: 36px;
+        }
+
+        .footer-nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-nav a:hover {
+            color: var(--accent);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 40px;
+        }
+
+        .social-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(235, 0, 13, 0.3);
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 992px) {
+            .roster-3col-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 44px; }
+            .about-card { padding: 30px 24px; }
+            .about-content { font-size: 1rem; }
+            .track-row { flex-direction: column; align-items: flex-start; gap: 14px; }
+            .track-counter { align-self: flex-start; }
+            .roster-3col-grid { grid-template-columns: 1fr; }
+            .timeline-viewport-wrapper { height: 520px; }
+            .orbital-track-ring { width: 300px; height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- FLOATING TOP NAVIGATION CONTROLS -->
+    <div class="nav-actions">
+        <a href="index.html" class="btn-utility">
+            <i class="fa-solid fa-arrow-left"></i> Main Portfolio
+        </a>
+        <button class="btn-utility btn-circle" id="themeToggle" title="Toggle Theme">
+            <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
+    </div>
+
+    <!-- HERO HEADER -->
+    <header>
+        <div class="container">
+            <span class="hero-badge" data-aos="fade-down">Sound Architecture &bull; Creative Direction</span>
+            <h1 data-aos="fade-up">ROCHANA<span>.</span></h1>
+            <p class="subtitle" data-aos="fade-up" data-aos-delay="100">Music Production &amp; Sonic Engineering</p>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- METRICS BANNER -->
+        <div class="metrics-banner" data-aos="fade-up" data-aos-duration="900">
+            <div class="metric-number"><span id="portfolioCount" class="accent-text">0.0</span><span class="accent-text">M+</span></div>
+            <div class="metric-label">Aggregate Digital Portfolio Streams &amp; Views</div>
+        </div>
+
+        <!-- ABOUT / SONIC ARCHITECTURE SECTION -->
+        <section id="about-chadfat">
+            <h3 class="section-title" data-aos="fade-right">Sonic Architecture</h3>
+            <div class="about-card" data-aos="fade-up" data-aos-duration="900">
+                <p class="about-content">
+                    Operating under the moniker <span class="highlight">ChadFat</span> (also known as Rochana Daham  ), he is a Sri Lankan music producer and composer recognized for shaping the island’s independent rap, trap, melodic, and contemporary Sinhala soundscapes. Since launching his musical journey in 2021, he has engineered signature records including the high-impact track <strong>“Kick Off”</strong> with <strong>Xayn</strong> and <strong>Devil Smok</strong>, as well as prominent releases such as <strong>“Rolling,”</strong> <strong>“Fugezzi,”</strong> <strong>“Sandawathiye,”</strong> <strong>“LSD,”</strong> <strong>“Thaniwiila,”</strong> and <strong>“Flash.”</strong> Blending surgical audio engineering with distinct urban bounce, his production catalog is defined by dynamic collaborations with prominent beatmakers and artists including <strong>Chakra Beatz</strong>, <strong>Taizy</strong>, <strong>Clessoff</strong>, <strong>Akesh Jayasekara</strong>, <strong>Danlan</strong>, <strong>Lilalone</strong>, <strong>Lashan</strong>, <strong>EDDI3</strong>, <strong>SANUGA</strong>, <strong>Radushka</strong>, and <strong>EskennyWorld20XX</strong>.
+                </p>
+            </div>
+        </section>
+
+        <!-- COMPOSITIONS LIST -->
+        <section id="compositions">
+            <h3 class="section-title" data-aos="fade-right">Composed &amp; Produced</h3>
+            <div class="tracks-list">
+                <div class="track-row" data-aos="fade-up" data-aos-delay="100">
+                    <div class="track-info">
+                        <i class="fa-solid fa-play track-icon"></i>
+                        <span class="track-title">Kick Off (feat. Devil Smok)</span>
+                    </div>
+                    <span class="track-counter">58,000 Views</span>
+                </div>
+                <div class="track-row" data-aos="fade-up" data-aos-delay="150">
+                    <div class="track-info">
+                        <i class="fa-solid fa-play track-icon"></i>
+                        <span class="track-title">Rolling (feat. Clessoff)</span>
+                    </div>
+                    <span class="track-counter">5,200 Views</span>
+                </div>
+                <div class="track-row" data-aos="fade-up" data-aos-delay="200">
+                    <div class="track-info">
+                        <i class="fa-solid fa-play track-icon"></i>
+                        <span class="track-title">RiDi 20XX Remix</span>
+                    </div>
+                    <span class="track-counter">2,400 Views</span>
+                </div>
+                <div class="track-row" data-aos="fade-up" data-aos-delay="250">
+                    <div class="track-info">
+                        <i class="fa-solid fa-play track-icon"></i>
+                        <span class="track-title">Mathaka Roo (Acoustic Version)</span>
+                    </div>
+                    <span class="track-counter">1,600 Views</span>
+                </div>
+                <div class="track-row" data-aos="fade-up" data-aos-delay="300">
+                    <div class="track-info">
+                        <i class="fa-solid fa-play track-icon"></i>
+                        <span class="track-title">Sandawathiye</span>
+                    </div>
+                    <span class="track-counter">1,100 Views</span>
+                </div>
+                <div class="track-row" data-aos="fade-up" data-aos-delay="350">
+                    <div class="track-info">
+                        <i class="fa-solid fa-play track-icon"></i>
+                        <span class="track-title">Sanasennam</span>
+                    </div>
+                    <span class="track-counter">842 Views</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- RADIAL ORBITAL TIMELINE -->
+        <section id="orbital-timeline-section">
+            <h3 class="section-title" data-aos="fade-right">Production Pipeline &amp; Ecosystem</h3>
+            
+            <div class="timeline-viewport-wrapper" id="timelineViewport" data-aos="zoom-in" data-aos-duration="1000">
+                <div class="orbital-scene-container" id="orbitalScene">
+                    
+                    <div class="central-hub-core">
+                        <div class="central-hub-inner"></div>
+                    </div>
+                    
+                    <div class="orbital-track-ring" id="trackRing"></div>
+                </div>
+
+                <!-- INTERACTIVE POPUP DETAIL -->
+                <div class="shadcn-popup-card" id="popupCard">
+                    <div class="popup-header">
+                        <span class="popup-badge" id="popupBadge">Category</span>
+                        <span class="popup-date" id="popupDate">Jan 2026</span>
+                    </div>
+                    <h4 class="popup-title" id="popupTitle">Node Title</h4>
+                    <p class="popup-content" id="popupContent">Detailed context content regarding node milestones goes here.</p>
+                    
+                    <div class="popup-energy-metric">
+                        <div class="energy-label-row">
+                            <span><i class="fa-solid fa-bolt" style="margin-right: 4px; color: var(--accent);"></i>Energy Matrix</span>
+                            <span id="popupEnergyVal">85%</span>
+                        </div>
+                        <div class="energy-track-bar">
+                            <div class="energy-fill-bar" id="popupEnergyFill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="popup-connections" id="popupConnectionsWrapper">
+                        <div class="connections-header">
+                            <i class="fa-solid fa-link"></i> Connected Nodes
+                        </div>
+                        <div class="connections-list" id="popupConnectionsList"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FREQUENT COLLABORATORS -->
+        <section id="face-collaborators">
+            <h3 class="section-title" data-aos="fade-right">Key Artist Collaborations</h3>
+            <div class="collaborators-grid">
+                <div class="artist-card" data-aos="zoom-in-up" data-aos-delay="100">
+                    <div class="image-frame">
+                        <img src="akesh photo.jpg" alt="Akesh Jayasekara">
+                    </div>
+                    <div class="badge">Indie Pop / Vocalist</div>
+                    <h4 class="artist-name">Akesh Jayasekara</h4>
+                    <p class="artist-desc">A leading voice in the contemporary movement. Renowned for rich vocal textures and hits like Sandawathiye and Danenawanam Tharam.</p>
+                </div>
+
+                <div class="artist-card" data-aos="zoom-in-up" data-aos-delay="200">
+                    <div class="image-frame">
+                        <img src="Chakka photo.jpg" alt="Chakra Beatz">
+                    </div>
+                    <div class="badge">Producer / Engineer</div>
+                    <h4 class="artist-name">Chakra Beatz</h4>
+                    <p class="artist-desc">Powerhouse sonic architect under DMT Records. Celebrated for defining dark urban bounce, meticulous mixing, and hit records.</p>
+                </div>
+
+                <div class="artist-card" data-aos="zoom-in-up" data-aos-delay="300">
+                    <div class="image-frame">
+                        <img src="Xayn photo.jpg" alt="Xayn">
+                    </div>
+                    <div class="badge">Hip-Hop Artist</div>
+                    <h4 class="artist-name">Xayn</h4>
+                    <p class="artist-desc">Brings sharp intensity and aggressive vocal delivery to the urban circuit. Co-founder of Matrix Music Group, delivering standouts like Kick Off.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXTENDED ROSTER (3-COLUMN GRID) -->
+        <section id="extended-roster" style="border-bottom: none;">
+            <h3 class="section-title" data-aos="fade-right">Extended Music Network</h3>
+            <div class="roster-3col-grid">
+                <div class="roster-col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="roster-mini-card">
+                        <h4>Devil Smok</h4>
+                        <p>Alternative heavy-hitter and pristine sound engineer. Meticulous alignment on major arrangement frameworks including Kick Off.</p>
+                    </div>
+                    <div class="roster-mini-card">
+                        <h4>Taizy</h4>
+                        <p>Masterful fusion element binding alternative underground rap foundations with clean melodic hooks across mainstream projects.</p>
+                    </div>
+                </div>
+
+                <div class="roster-col" data-aos="fade-up" data-aos-delay="200">
+                    <div class="roster-mini-card">
+                        <h4>SANUGA</h4>
+                        <p>Vocal powerhouse bringing smooth modern texture synchronization across tracks like Ma Langin and Mihire.</p>
+                    </div>
+                    <div class="roster-mini-card">
+                        <h4>Radushka</h4>
+                        <p>Delivering deep emotional tracking and ambient atmospheric resonance on Oba Nisa and Atharaman Una Ma.</p>
+                    </div>
+                </div>
+
+                <div class="roster-col" data-aos="fade-up" data-aos-delay="300">
+                    <div class="roster-mini-card">
+                        <h4>EskennyWorld20XX</h4>
+                        <p>Global multi-genre production partner structuring underground anthems including RiDi Remix and ASAMANAI.</p>
+                    </div>
+                    <div class="roster-mini-card">
+                        <h4>Clessoff</h4>
+                        <p>Unlocking intense high-octane rap verses and energetic urban elements on records like Rolling and Fugezzi.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- STACKED CIRCULAR FOOTER (SYNCED TO MAIN LANDING PAGE) -->
+    <footer class="stacked-footer">
+        <div class="footer-container">
+            
+            <div class="footer-logo-circle" title="Urban Distance">
+                <img src="urban logo.png" alt="Urban Distance Logo" style="width: 40px; height: 40px; border-radius: 50%;">
+            </div>
+
+            <p class="footer-tagline">
+                Music Production &bull; Sonic Engineering &bull; Creative Direction
+            </p>
+
+            <nav class="footer-nav">
+                <a href="index.html#Home">Home</a>
+                <a href="#about-chadfat">About</a>
+                <a href="#compositions">Compositions</a>
+                <a href="#orbital-timeline-section">Pipeline</a>
+                <a href="#face-collaborators">Collaborators</a>
+                <a href="index.html#Portfolio">Portfolio</a>
+            </nav>
+
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/rochanada" target="_blank" class="social-btn" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="https://behance.net/rochanada" target="_blank" class="social-btn" aria-label="Behance">
+                    <i class="fa-brands fa-behance"></i>
+                </a>
+                <a href="https://github.com/rochanada" target="_blank" class="social-btn" aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="mailto:rochanadah@gmail.com" class="social-btn" aria-label="Email">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
+
+            <p class="footer-copyright">
+                &copy; 2026 Rochana Abeyagunawardhana. Built with precision and purpose.
+            </p>
+
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            anchorPlacement: 'top-bottom'
+        });
+
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                document.documentElement.removeAttribute('data-theme');
+                themeIcon.className = 'fa-solid fa-moon';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeIcon.className = 'fa-solid fa-sun';
+            }
+        });
+
+        // Portfolio Stream Counter
+        document.addEventListener("DOMContentLoaded", () => {
+            const counterElement = document.getElementById("portfolioCount");
+            const targetValue = 12.3;
+            const duration = 2200;
+            const totalFrames = 60;
+            let currentFrame = 0;
+
+            const easeOutQuad = (t) => t * (2 - t);
+
+            const animateCounter = () => {
+                currentFrame++;
+                const progress = easeOutQuad(currentFrame / totalFrames);
+                const currentValue = progress * targetValue;
+
+                counterElement.innerText = currentValue.toFixed(1);
+
+                if (currentFrame < totalFrames) {
+                    requestAnimationFrame(animateCounter);
+                } else {
+                    counterElement.innerText = targetValue.toFixed(1);
+                }
+            };
+
+            requestAnimationFrame(animateCounter);
+        });
+
+        // Radial Orbital Graph Engine
+        const timelineData = [
+            {
+                id: 1,
+                title: "Pre-Production",
+                date: "Q1 2026",
+                content: "Concept formulation and initial structural engineering hooks setup.",
+                category: "Ecosystem",
+                icon: "fa-sliders",
+                relatedIds: [2, 3],
+                energy: 100
+            },
+            {
+                id: 2,
+                title: "Sound Design",
+                date: "Q2 2026",
+                content: "Deep dynamic sound layering processing and track optimization synthesis.",
+                category: "Capabilities",
+                icon: "fa-wave-square",
+                relatedIds: [1, 4],
+                energy: 90
+            },
+            {
+                id: 3,
+                title: "Collaborations",
+                date: "Q2 2026",
+                content: "Vocal sync tracks matrix expansion with key underground performance features.",
+                category: "Showcase",
+                icon: "fa-user-group",
+                relatedIds: [1, 5],
+                energy: 75
+            },
+            {
+                id: 4,
+                title: "Mixing Master",
+                date: "Q3 2026",
+                content: "High-octane sound bounce calibration and pristine spectrum balancing matrix.",
+                category: "Performance",
+                icon: "fa-compact-disc",
+                relatedIds: [2, 5],
+                energy: 40
+            },
+            {
+                id: 5,
+                title: "Global Release",
+                date: "Q4 2026",
+                content: "Final deployment and international digital dynamic tracking launch sequence.",
+                category: "Network",
+                icon: "fa-globe",
+                relatedIds: [3, 4],
+                energy: 15
+            }
+        ];
+
+        let rotationAngle = 0;
+        let autoRotate = true;
+        let activeNodeId = null;
+        const orbitRadius = window.innerWidth <= 768 ? 130 : 200;
+
+        const sceneContainer = document.getElementById('orbitalScene');
+        const popupCard = document.getElementById('popupCard');
+        const viewportContainer = document.getElementById('timelineViewport');
+        const nodesArray = [];
+
+        function createTimelineNodes() {
+            timelineData.forEach((item, index) => {
+                const nodeEl = document.createElement('div');
+                nodeEl.className = 'timeline-orbit-node';
+                nodeEl.setAttribute('data-id', item.id);
+
+                nodeEl.innerHTML = `
+                    <div class="node-energy-field" style="width: ${item.energy * 0.4 + 50}px; height: ${item.energy * 0.4 + 50}px;"></div>
+                    <div class="node-handle-circle">
+                        <i class="fa-solid ${item.icon}"></i>
+                    </div>
+                    <div class="node-text-label">${item.title}</div>
+                `;
+
+                nodeEl.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleNodeExpansion(item.id);
+                });
+
+                sceneContainer.appendChild(nodeEl);
+                nodesArray.push({ element: nodeEl, index: index });
+            });
+        }
+
+        function updateNodePositions() {
+            const totalNodes = timelineData.length;
+            
+            nodesArray.forEach((nodeObj) => {
+                const angle = ((nodeObj.index / totalNodes) * 360 + rotationAngle) % 360;
+                const radian = (angle * Math.PI) / 180;
+
+                const x = orbitRadius * Math.cos(radian);
+                const y = orbitRadius * Math.sin(radian);
+                const zIndex = Math.round(100 + 50 * Math.cos(radian));
+                const opacity = nodeObj.element.classList.contains('node-active') ? 1 : Math.max(0.35, Math.min(1, 0.4 + 0.6 * ((1 + Math.sin(radian)) / 2)));
+
+                nodeObj.element.style.transform = `translate(${x}px, ${y}px)`;
+                nodeObj.element.style.zIndex = zIndex;
+                if (activeNodeId === null || nodeObj.element.classList.contains('node-active')) {
+                    nodeObj.element.style.opacity = opacity;
+                }
+            });
+        }
+
+        function toggleNodeExpansion(id) {
+            const item = timelineData.find(i => i.id === id);
+            
+            if (activeNodeId === id) {
+                activeNodeId = null;
+                autoRotate = true;
+                popupCard.classList.remove('popup-visible');
+                
+                nodesArray.forEach(n => {
+                    n.element.classList.remove('node-active', 'pulse-active');
+                    n.element.style.opacity = '';
+                });
+            } else {
+                activeNodeId = id;
+                autoRotate = false;
+                
+                const totalNodes = timelineData.length;
+                const nodeIndex = timelineData.findIndex(i => i.id === id);
+                const targetAngle = (nodeIndex / totalNodes) * 360;
+                rotationAngle = (270 - targetAngle + 360) % 360;
+
+                nodesArray.forEach(n => {
+                    const currentId = parseInt(n.element.getAttribute('data-id'));
+                    n.element.classList.remove('node-active', 'pulse-active');
+                    
+                    if (currentId === id) {
+                        n.element.classList.add('node-active');
+                        n.element.style.opacity = '1';
+                    } else if (item.relatedIds.includes(currentId)) {
+                        n.element.classList.add('pulse-active');
+                        n.element.style.opacity = '0.8';
+                    } else {
+                        n.element.style.opacity = '0.25';
+                    }
+                });
+
+                document.getElementById('popupBadge').innerText = item.category.toUpperCase();
+                document.getElementById('popupDate').innerText = item.date;
+                document.getElementById('popupTitle').innerText = item.title;
+                document.getElementById('popupContent').innerText = item.content;
+                document.getElementById('popupEnergyVal').innerText = `${item.energy}%`;
+                document.getElementById('popupEnergyFill').style.width = `${item.energy}%`;
+
+                const linksContainer = document.getElementById('popupConnectionsList');
+                linksContainer.innerHTML = '';
+                
+                item.relatedIds.forEach(relId => {
+                    const relItem = timelineData.find(i => i.id === relId);
+                    if (relItem) {
+                        const btn = document.createElement('button');
+                        btn.className = 'connection-link-btn';
+                        btn.innerHTML = `${relItem.title} <i class="fa-solid fa-arrow-right" style="font-size:8px;"></i>`;
+                        btn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            toggleNodeExpansion(relId);
+                        });
+                        linksContainer.appendChild(btn);
+                    }
+                });
+
+                popupCard.classList.add('popup-visible');
+            }
+            updateNodePositions();
+        }
+
+        viewportContainer.addEventListener('click', (e) => {
+            if (e.target === viewportContainer || e.target === sceneContainer || e.target === document.getElementById('trackRing')) {
+                if (activeNodeId !== null) {
+                    toggleNodeExpansion(activeNodeId);
+                }
+            }
+        });
+
+        setInterval(() => {
+            if (autoRotate) {
+                rotationAngle = (rotationAngle + 0.3) % 360;
+                updateNodePositions();
+            }
+        }, 30);
+
+        createTimelineNodes();
+        updateNodePositions();
+    </script>
+</body>
+</html>
